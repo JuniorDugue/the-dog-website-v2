@@ -1,0 +1,10 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+img {
+	max-width: 250px;
+	max-height: 250px;
+	padding: 10px;
+}
