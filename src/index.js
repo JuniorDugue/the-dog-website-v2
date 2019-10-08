@@ -2,17 +2,7 @@ import ReactDOM from "react-dom";
 import React, { useEffect, useState } from "react";
 import "./styles.css";
 import axios from "axios";
-
-//our first custom hook
-function useInput(initialValue){
-  const [value, setValue] = useState(initialValue)
-
-  const customSetter = (newValue) => {
-    setValue(newValue)
-  }
-
-  return[value, customSetter]
-}
+import {useInput} from "./utils/input";
 
 function App(props) {
   const [breed, setBreed] = useInput("husky");
