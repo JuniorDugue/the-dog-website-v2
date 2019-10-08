@@ -3,8 +3,20 @@ import React, { useEffect, useState } from "react";
 import "./styles.css";
 import axios from "axios";
 
+//our first custom hook
+function useInput(initialValue){
+  const [value, setValue] = useState(initialValue)
+
+  const customSetter = (newValue) => {
+    setValue(newValue)
+  }
+
+  return[value, customSetter]
+}
+
 function App(props) {
-  const [breed, setBreed] = useState("husky");
+  const [breed, setBreed] = useInput("husky");
+  // const [breed, setBreed] = useState("husky");
   const [images, setImages] = useState([]);
 
   useEffect(() => {
@@ -20,8 +32,8 @@ function App(props) {
   const fetchDogImages = () => {
     axios
       .get(`https://dog.ceo/api/breed/${breed}/images`)
-      .then(result => {
-        setImages(result.data.message);
+      .then(res => {
+        setImages(res.data.message);
       })
       .catch(error => {
         console.log("error:", error);
