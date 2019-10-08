@@ -2,10 +2,11 @@ import ReactDOM from "react-dom";
 import React, { useEffect, useState } from "react";
 import "./styles.css";
 import axios from "axios";
-import {useInput} from "./utils/input";
+import {useInput, useLocalStorage} from "./utils/input";
 
 function App(props) {
-  const [breed, setBreed] = useInput("husky");
+  // const [breed, setBreed] = useInput("husky");
+  const [breed, setBreed] = useLocalStorage("breed""husky");
   // const [breed, setBreed] = useState("husky");
   const [images, setImages] = useState([]);
 
