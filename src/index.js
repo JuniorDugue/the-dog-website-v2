@@ -6,9 +6,12 @@ import {useInput, useLocalStorage} from "./utils/input";
 
 function App(props) {
   // const [breed, setBreed] = useInput("husky");
-  const [breed, setBreed] = useLocalStorage("breed""husky");
+  const [breed, setBreed] = useLocalStorage("breed","husky");
   // const [breed, setBreed] = useState("husky");
   const [images, setImages] = useState([]);
+
+  //custom hook to count images
+  const [count, setCount] = useState(["count", 1]);
 
   useEffect(() => {
     setImages([]);
