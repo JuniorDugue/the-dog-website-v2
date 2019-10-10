@@ -1,22 +1,24 @@
 import ReactDOM from "react-dom";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./styles.css";
-import axios from "axios";
-import { useInput, useLocalStorage } from "./utils/input";
+// import axios from "axios";
+import { useLocalStorage } from "./utils/input";
+import {useDogImages} from "./utils/api";
 
 function App(props) {
   // const [breed, setBreed] = useInput("husky");
   const [breed, setBreed] = useLocalStorage("breed", "husky");
   // const [breed, setBreed] = useState("husky");
-  const [images, setImages] = useState([]);
+  // const [images, setImages] = useState([]);
 
+    const[images] = useDogImages(breed, count)
   //custom hook to count images
-  const [count, setCount] = useLocalStorage(["count", 1]);
+  const [count, setCount] = useLocalStorage("count", 1);
 
-  useEffect(() => {
-    setImages([]);
-    fetchDogImages();
-  }, [breed, count]);
+  // useEffect(() => {
+  //   setImages([]);
+  //   // fetchDogImages();
+  // }, [breed, count]);
 
   //
   // const handleChange = e => {
@@ -24,16 +26,6 @@ function App(props) {
   // };
 
   // extract this function from lifecycle event since it's used multiple times
-  const fetchDogImages = () => {
-    axios
-      .get(`https://dog.ceo/api/breed/${breed}/images/random/${count}`)
-      .then(res => {
-        setImages(res.data.message);
-      })
-      .catch(error => {
-        console.log("error:", error);
-      });
-  };
 
   return (
     <>
